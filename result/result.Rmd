@@ -1,0 +1,33 @@
+---
+title: "result"
+author: "Jianxiu Cai"
+date: "2023-09-11"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(dplyr)
+library(ggplot2)
+```
+
+```{r}
+pollutant <- read.csv("/home/jianxiu/Documents/air/deep/result/result_macao_residential/SO2/macao_residential_SO2.csv")
+pollutant_sum <-pollutant %>% group_by(model) %>%
+  summarise(mean_rmse = mean(rmse),
+            std_rmse = sd(rmse),
+            mean_mae = mean(mae),
+            std_mae = sd(mae),
+            mean_pcc = mean(pcc),
+            std_pcc = sd(pcc),
+            mean_ktc = mean(ktc),
+            std_ktc = sd(ktc),
+            .groups = 'drop') %>%
+  as.data.frame()
+write.csv(pollutant_sum, "/home/jianxiu/Documents/air/deep/result/result_macao_residential/SO2/macao_residential_SO2_sum.csv", row.names = FALSE)
+```
+
+
