@@ -1,4 +1,4 @@
-# Project Title
+# Air quality: time series prediction for Macao
 
 Application of machine learning models to forecast air quality in Macau
 
